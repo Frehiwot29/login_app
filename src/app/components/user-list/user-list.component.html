@@ -1,0 +1,113 @@
+<div class="user-management-container">
+  <header class="app-header">
+    <h2>User Matrix Workspace</h2>
+    <a routerLink="/dashboard" class="back-link">← Return to Dashboard</a>
+  </header>
+
+  <div class="workspace-grid">
+    <!-- Form Section -->
+    <aside class="form-card">
+      <h3>{{ isEditing ? "Modify User Profile" : "Register New User" }}</h3>
+      <form (ngSubmit)="saveUser()">
+        <div class="input-field">
+          <label>Full Name</label>
+          <input
+            type="text"
+            [(ngModel)]="userName"
+            name="name"
+            required
+            placeholder="Ex: Sarah Connor"
+          />
+        </div>
+
+        <div class="input-field">
+          <label>Email Address</label>
+          <input
+            type="email"
+            [(ngModel)]="userEmail"
+            name="email"
+            required
+            placeholder="Ex: sarah@skynet.com"
+          />
+        </div>
+
+        <div class="input-field">
+          <label>System Permissions Role</label>
+          <select [(ngModel)]="userRole" name="role">
+            <option value="Administrator">Administrator</option>
+            <option value="Editor">Editor</option>
+            <option value="Subscriber">Subscriber</option>
+          </select>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="btn-save">
+            {{ isEditing ? "Apply Changes" : "Add User" }}
+          </button>
+          <button
+            type="button"
+            *ngIf="isEditing"
+            (click)="resetForm()"
+            class="btn-cancel"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </aside>
+
+    <!-- Table Grid Section -->
+    <main class="table-card">
+      <h3>Active Platform Users ({{ users().length }})</h3>
+
+      <div class="table-responsive">
+        <table class="user-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Identity Details</th>
+              <th>Access Level</th>
+              <th class="text-right">Actions Matrix</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users()">
+              <td>#{{ user.id }}</td>
+              <td>
+                <div class="user-info">
+                  <span class="user-name">{{ user.name }}</span>
+                  <span class="user-email">{{ user.email }}</span>
+                </div>
+              </td>
+              <td>
+                <span
+                  class="badge"
+                  [className]="'badge ' + user.role.toLowerCase()"
+                  >{{ user.role }}</span
+                >
+              </td>
+              <td class="text-right">
+                <div class="row-actions">
+                  <button class="btn-action edit" (click)="editUser(user)">
+                    Edit
+                  </button>
+                  <button
+                    class="btn-action delete"
+                    (click)="deleteUser(user.id)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+            <tr *ngIf="users().length === 0">
+              <td colspan="4" class="empty-state">
+                No users registered on the platform workspace.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</div>

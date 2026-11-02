@@ -1,0 +1,51 @@
+<div class="dashboard-wrapper">
+  <nav class="navbar">
+    <span class="brand">Admin Panel</span>
+    <button class="logout-btn" (click)="onLogout()">Log Out</button>
+  </nav>
+
+  <main class="dashboard-content">
+    <h1>Welcome to Your Dashboard</h1>
+    <p>
+      This metrics workspace is protected by functional authentication routing.
+    </p>
+
+    <div class="metrics-grid">
+      <div class="card">
+        <h3>Active Users</h3>
+        <p>1,248</p>
+      </div>
+      <div class="card">
+        <h3>Server Status</h3>
+        <p class="status-good">Optimal</p>
+      </div>
+      <div class="card">
+        <h3>Conversion</h3>
+        <p>4.8%</p>
+      </div>
+    </div>
+  </main>
+  <div
+    style="
+      margin-bottom: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    "
+  >
+    <h2>Control Center Overview</h2>
+    <a
+      routerLink="/users"
+      style="
+        background: #2563eb;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 500;
+      "
+    >
+      Manage Users Grid →
+    </a>
+  </div>
+</div>
