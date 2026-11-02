@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
 
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -14,6 +14,7 @@ interface UserItem {
     selector: 'app-user-list',
     imports: [FormsModule, RouterLink],
     templateUrl: './user-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
     styleUrl: './user-list.component.scss' // Make sure extension is .scss
 })
 export class UserListComponent {
