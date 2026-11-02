@@ -11,11 +11,10 @@ interface UserItem {
 }
 
 @Component({
-  selector: 'app-user-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss' // Make sure extension is .scss
+    selector: 'app-user-list',
+    imports: [CommonModule, FormsModule, RouterLink],
+    templateUrl: './user-list.component.html',
+    styleUrl: './user-list.component.scss' // Make sure extension is .scss
 })
 export class UserListComponent {
   // Using Signals to hold our reactive array list
