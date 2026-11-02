@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, signal, ChangeDetectionStrategy } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -11,11 +11,11 @@ interface UserItem {
 }
 
 @Component({
-  selector: 'app-user-list',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink],
-  templateUrl: './user-list.component.html',
-  styleUrl: './user-list.component.scss' // Make sure extension is .scss
+    selector: 'app-user-list',
+    imports: [FormsModule, RouterLink],
+    templateUrl: './user-list.component.html',
+    changeDetection: ChangeDetectionStrategy.Eager,
+    styleUrl: './user-list.component.scss' // Make sure extension is .scss
 })
 export class UserListComponent {
   // Using Signals to hold our reactive array list

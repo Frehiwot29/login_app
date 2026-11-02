@@ -2,9 +2,11 @@
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="login-form">
     <h2>System Sign In</h2>
 
-    <div *ngIf="errorMessage" class="error-banner">
-      {{ errorMessage }}
-    </div>
+    @if (errorMessage) {
+      <div class="error-banner">
+        {{ errorMessage }}
+      </div>
+    }
 
     <div class="form-group">
       <label for="username">Username</label>
@@ -15,7 +17,7 @@
         [(ngModel)]="username"
         required
         autocomplete="off"
-      />
+        />
     </div>
 
     <div class="form-group">
@@ -26,7 +28,7 @@
         name="password"
         [(ngModel)]="password"
         required
-      />
+        />
     </div>
 
     <button type="submit" [disabled]="!loginForm.valid">Log In</button>
