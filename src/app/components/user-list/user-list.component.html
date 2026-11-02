@@ -17,7 +17,7 @@
             name="name"
             required
             placeholder="Ex: Sarah Connor"
-          />
+            />
         </div>
 
         <div class="input-field">
@@ -28,7 +28,7 @@
             name="email"
             required
             placeholder="Ex: sarah@skynet.com"
-          />
+            />
         </div>
 
         <div class="input-field">
@@ -44,14 +44,15 @@
           <button type="submit" class="btn-save">
             {{ isEditing ? "Apply Changes" : "Add User" }}
           </button>
-          <button
-            type="button"
-            *ngIf="isEditing"
-            (click)="resetForm()"
-            class="btn-cancel"
-          >
-            Cancel
-          </button>
+          @if (isEditing) {
+            <button
+              type="button"
+              (click)="resetForm()"
+              class="btn-cancel"
+              >
+              Cancel
+            </button>
+          }
         </div>
       </form>
     </aside>
@@ -71,43 +72,47 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let user of users()">
-              <td>#{{ user.id }}</td>
-              <td>
-                <div class="user-info">
-                  <span class="user-name">{{ user.name }}</span>
-                  <span class="user-email">{{ user.email }}</span>
-                </div>
-              </td>
-              <td>
-                <span
-                  class="badge"
-                  [className]="'badge ' + user.role.toLowerCase()"
-                  >{{ user.role }}</span
-                >
-              </td>
-              <td class="text-right">
-                <div class="row-actions">
-                  <button class="btn-action edit" (click)="editUser(user)">
-                    Edit
-                  </button>
-                  <button
-                    class="btn-action delete"
-                    (click)="deleteUser(user.id)"
-                  >
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-            <tr *ngIf="users().length === 0">
-              <td colspan="4" class="empty-state">
-                No users registered on the platform workspace.
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
+            @for (user of users(); track user) {
+              <tr>
+                <td>#{{ user.id }}</td>
+                <td>
+                  <div class="user-info">
+                    <span class="user-name">{{ user.name }}</span>
+                    <span class="user-email">{{ user.email }}</span>
+                  </div>
+                </td>
+                <td>
+                  <span
+                    class="badge"
+                    [className]="'badge ' + user.role.toLowerCase()"
+                    >{{ user.role }}</span
+                    >
+                  </td>
+                  <td class="text-right">
+                    <div class="row-actions">
+                      <button class="btn-action edit" (click)="editUser(user)">
+                        Edit
+                      </button>
+                      <button
+                        class="btn-action delete"
+                        (click)="deleteUser(user.id)"
+                        >
+                        Delete
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              }
+              @if (users().length === 0) {
+                <tr>
+                  <td colspan="4" class="empty-state">
+                    No users registered on the platform workspace.
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </main>
+    </div>
   </div>
-</div>

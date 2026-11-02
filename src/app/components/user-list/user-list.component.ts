@@ -1,5 +1,5 @@
 import { Component, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -12,7 +12,7 @@ interface UserItem {
 
 @Component({
     selector: 'app-user-list',
-    imports: [CommonModule, FormsModule, RouterLink],
+    imports: [FormsModule, RouterLink],
     templateUrl: './user-list.component.html',
     styleUrl: './user-list.component.scss' // Make sure extension is .scss
 })
